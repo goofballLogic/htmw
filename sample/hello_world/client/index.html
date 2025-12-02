@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+
+    <style>
+        #todo button,
+        #completed button {
+
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: transparent;
+            border: none;
+            padding: 0.5rem;
+
+            &::before {
+
+                display: block;
+                content: " ";
+                width: 1rem;
+                height: 1rem;
+                border: solid 0.5px silver;
+                border-radius: 1rem;
+
+            }
+            &:hover::before {
+                border-color: black;
+            }
+
+        }
+
+        #todo button:hover,
+        #completed button:not(:hover) {
+
+            * {
+                text-decoration: line-through;
+            }
+
+            &::before {
+
+                text-decoration: unset;
+                content: "\2713";
+
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>To do list</h1>
+    <form id="add-item" htmw>
+
+        <input type="hidden" name="list-id" id="list-id" />
+        <input type="text" name="task-name" id="task-name" placeholder="New task here" required />
+        <button name="action" value="Add" type="submit">Add</button>
+
+    </form>
+    <section id="todo">
+
+        <header>
+            <h2>To do</h2>
+        </header>
+
+    </section>
+    <section id="completed">
+
+        <header>
+            <h2>Complete</h2>
+        </header>
+
+    </section>
+    <script src="htmw.0.0.2.js"></script>
+
+</body>
+
+</html>
