@@ -1,7 +1,8 @@
 const ops = {
-    value: (el, content) => { el.value = content; },
+    value: (el, x) => { el.value = x; },
     remove: el => el.remove(),
-    _: (el, content) => el.innerHTML += content
+    attr: (el, x) => { if(Array.isArray(x)) el.setAttribute(x[0], x[1]); },
+    _: (el, x) => el.innerHTML += x
 };
 document.addEventListener("submit", async function handleSubmit(e) {
 
@@ -13,7 +14,8 @@ document.addEventListener("submit", async function handleSubmit(e) {
         form.getAttribute("id"),
         Object.fromEntries(new FormData(form).entries())
     ]);
-    const resp = await fetch("/htmw", { method: "POST", body: data, headers: { "content-type": "application/json" } });
+    const action = form.getAttribute("action") || "/htmw";
+    const resp = await fetch(action, { method: "POST", body: data, headers: { "content-type": "application/json" } });
     if(!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
     if (resp.status === 204) return;
     const json = await resp.json();
