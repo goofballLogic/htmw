@@ -4,7 +4,7 @@ const ops = {
     attr: (el, x) => { if(Array.isArray(x)) el.setAttribute(x[0], x[1]); },
     _: (el, x) => el.innerHTML += x
 };
-document.addEventListener("submit", async function handleSubmit(e) {
+document.addEventListener("submit", async e => {
 
     const form = e.target;
     if (!form?.hasAttribute("htmw")) return;
