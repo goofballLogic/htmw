@@ -4,9 +4,13 @@
 <head>
 
     <style>
-        #todo button,
-        #completed button {
-
+        #todo form, #completed form {
+            display: flex;
+            align-items: center;
+            gap: 2em;
+        }
+        #todo button:not([method]),
+        #completed button:not([method]) {
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -30,8 +34,8 @@
 
         }
 
-        #todo button:hover,
-        #completed button:not(:hover) {
+        #todo button:not([method]):hover,
+        #completed button:not([method]):not(:hover) {
 
             * {
                 text-decoration: line-through;

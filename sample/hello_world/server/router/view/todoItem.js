@@ -6,7 +6,9 @@ export default (taskName, tid, listId, isComplete) => `
         <span>${taskName}</span>
     </button>
     <input type="hidden" name="completed" value="${isComplete ? 0 : 1}" />
-
+    <button type="submit" method="delete">
+        Delete
+    </button>
 </form>
 
 `;

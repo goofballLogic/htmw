@@ -8,6 +8,7 @@ const listRouter = new Router();
 listRouter.post("/", addTask);
 listRouter.post("/:listId", addTask);
 listRouter.post("/:listId/item/:tid", mutateTask);
+listRouter.delete("/:listId/item/:tid", deleteTask);
 
 export default listRouter;
 
@@ -46,5 +47,20 @@ function mutateTask(req, res) {
         ]);
 
     }
+
+}
+
+function deleteTask(req, res) {
+
+    const { listId, tid } = req.params;
+    if (database[listId]?.[tid]) {
+
+        delete database[listId][tid];
+
+    }
+    const { id } = parseBody(req);
+    res.status(200).send([
+        byId(id).remove(id)
+    ]);
 
 }

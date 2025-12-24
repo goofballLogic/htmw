@@ -15,7 +15,8 @@ document.addEventListener("submit", async e => {
         Object.fromEntries(new FormData(form).entries())
     ]);
     const action = form.getAttribute("action") || "/htmw";
-    const resp = await fetch(action, { method: "POST", body: data, headers: { "content-type": "application/json" } });
+    const method = e.submitter.getAttribute("method") || "POST";
+    const resp = await fetch(action, { method, body: data, headers: { "content-type": "application/json" } });
     if(!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
     if (resp.status === 204) return;
     const json = await resp.json();
